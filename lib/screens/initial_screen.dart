@@ -71,7 +71,7 @@ class _InitialScreenState extends State<InitialScreen> {
               fontFamily: 'Roboto',
               color: color,
             ),
-            duration: const Duration(milliseconds: 500),
+            duration: const Duration(milliseconds: 1000),
             child: Text(title),
           ),
         ),
