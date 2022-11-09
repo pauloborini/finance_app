@@ -7,6 +7,7 @@ import 'package:despesasplus/screens/income_screen.dart';
 import 'package:despesasplus/screens/info_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:despesasplus/screens/dream_screen.dart';
+import 'package:flutter/services.dart';
 
 class InitialScreen extends StatefulWidget {
   InitialScreen({Key? key}) : super(key: key);
@@ -18,6 +19,7 @@ class InitialScreen extends StatefulWidget {
 }
 
 class _InitialScreenState extends State<InitialScreen> {
+  final Duration _duration = const Duration(milliseconds: 600);
 
   @override
   void didChangeDependencies() {
@@ -26,7 +28,7 @@ class _InitialScreenState extends State<InitialScreen> {
     getListIncomes();
   }
 
-  final Color stanColor = const Color.fromARGB(255, 245, 245, 245);
+  final Color stanColor = const Color.fromARGB(255, 245, 244, 240);
   final Color fontColor = Colors.black87;
   final Color tabColorRed = const Color.fromARGB(255, 250, 195, 195);
   final Color tabColorGreen = const Color.fromARGB(255, 219, 241, 193);
@@ -35,12 +37,12 @@ class _InitialScreenState extends State<InitialScreen> {
   Color color = Colors.orange;
   int currentIndex = 0;
 
-
   getList() async {
     Future<List<Expense>> listSeven = ExpenseDao().findSeven();
     widget.listToChartExpenses = await listSeven;
     return widget.listToChartExpenses;
   }
+
   getListIncomes() async {
     Future<List<Income>> listSeven = IncomeDao().findSeven();
     widget.listToChartIncomes = await listSeven;
@@ -49,35 +51,47 @@ class _InitialScreenState extends State<InitialScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final appBar = AppBar(
+      systemOverlayStyle:
+          const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+      backgroundColor: stanColor,
+      elevation: 0,
+      centerTitle: true,
+      title: AnimatedDefaultTextStyle(
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 26,
+          fontFamily: 'Roboto',
+          color: color,
+        ),
+        duration: const Duration(milliseconds: 1000),
+        child: Text(
+          title,
+          style:
+              TextStyle(fontSize: 24 * MediaQuery.of(context).textScaleFactor),
+        ),
+      ),
+    );
+    final availableHeight = MediaQuery.of(context).size.height -
+        appBar.preferredSize.height -
+        MediaQuery.of(context).padding.top -
+        kBottomNavigationBarHeight;
     List body = [
-      const DreamScreen(),
-      const IncomeScreen(),
-      const ExpenseScreen(),
-      InfoScreen(listToChartExpenses: widget.listToChartExpenses, listToChartIncomes: widget.listToChartIncomes,),
+      DreamScreen(height: availableHeight),
+      IncomeScreen(height: availableHeight),
+      ExpenseScreen(height: availableHeight),
+      InfoScreen(
+          listToChartExpenses: widget.listToChartExpenses,
+          listToChartIncomes: widget.listToChartIncomes,
+          height: availableHeight),
     ];
     return DefaultTabController(
       initialIndex: 0,
-      length: 2,
+      length: 4,
       child: Scaffold(
         backgroundColor: stanColor,
-        appBar: AppBar(
-          backgroundColor: stanColor,
-          elevation: 0,
-          centerTitle: true,
-          title: AnimatedDefaultTextStyle(
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 26,
-              fontFamily: 'Roboto',
-              color: color,
-            ),
-            duration: const Duration(milliseconds: 1000),
-            child: Text(title),
-          ),
-        ),
-        body: Center(
-          child: body.elementAt(currentIndex),
-        ),
+        appBar: appBar,
+        body: SizedBox(child: body.elementAt(currentIndex)),
         bottomNavigationBar: NavigationBar(
             height: 60,
             labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
@@ -108,9 +122,9 @@ class _InitialScreenState extends State<InitialScreen> {
                 } else if (currentIndex == 2) {
                   color = Colors.red;
                   title = 'Saídas';
-                  } else if (currentIndex == 3){
-                    color = Colors.black87;
-                    title = 'Informações';
+                } else if (currentIndex == 3) {
+                  color = Colors.black87;
+                  title = 'Informações';
                 }
               });
             }),

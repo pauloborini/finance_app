@@ -1,11 +1,12 @@
-import 'package:despesasplus/components/dream_list.dart';
+import 'package:despesasplus/components/dreams/dream_list.dart';
+import 'package:despesasplus/components/dreams/sticky_note.dart';
 import 'package:flutter/material.dart';
-import '../components/dream_card.dart';
-import '../components/dream_form.dart';
+import '../forms/dream_form.dart';
 import '../components/floating_button.dart';
 
 class DreamScreen extends StatefulWidget {
-  const DreamScreen({Key? key}) : super(key: key);
+  final double height;
+  const DreamScreen({Key? key, required this.height}) : super(key: key);
 
   @override
   State<DreamScreen> createState() => _DreamScreenState();
@@ -32,9 +33,18 @@ class _DreamScreenState extends State<DreamScreen> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          DreamList(),
+          SizedBox(
+              width: double.infinity,
+              height: widget.height * 0.6,
+              child: DreamList()),
           Stack(alignment: AlignmentDirectional.bottomEnd, children: [
-            PostIT(),
+            SizedBox(
+                width: double.infinity,
+                height:widget.height * 0.39,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 4, 10, 4),
+                  child: StickyNote(height: widget.height,),
+                )),
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 20, 10),
               child: FloatingButton(

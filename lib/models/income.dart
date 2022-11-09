@@ -51,7 +51,7 @@ class Income extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                           color: fontColor)),
-                  Text(DateFormat('d MMM y').format(DateTime.now()),
+                  Text(DateFormat('d MMM y').format(DateTime.parse(date)),
                       style:
                           TextStyle(fontSize: 16, color: Colors.grey.shade800)),
                 ],
@@ -67,11 +67,13 @@ class Income extends StatelessWidget {
                     // color: tabColor,
                     borderRadius: BorderRadius.circular(50)),
                 child: Center(
-                    child: Text(
-                      'R\$ ${value.toStringAsFixed(2)}',
+                    child: FittedBox(
+                      child: Text(
+                        'R\$ ${value.toStringAsFixed(2)}',
                   style: const TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.bold),
-                )),
+                        fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                    )),
               ),
             ),
           ],

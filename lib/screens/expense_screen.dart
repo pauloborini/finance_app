@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import '../components/expense_form.dart';
-import '../components/expense_list.dart';
+import '../forms/expense_form.dart';
+import '../components/expenses/expense_list.dart';
 import '../components/floating_button.dart';
 
 class ExpenseScreen extends StatefulWidget {
-  const ExpenseScreen({Key? key}) : super(key: key);
+  final double height;
+  const ExpenseScreen({Key? key, required this.height}) : super(key: key);
 
   @override
   State<ExpenseScreen> createState() => _ExpenseScreenState();
@@ -19,7 +20,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
     showModalBottomSheet(
         context: context,
         builder: (ctx) {
-          return const ExpenseForm();
+          return ExpenseForm();
         }).then((value) => setState(() {}));
   }
 
@@ -30,7 +31,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Stack(alignment: AlignmentDirectional.bottomCenter, children: [
-            ExpenseList(),
+            ExpenseList(height: widget.height),
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 30),
               child: FloatingButton(

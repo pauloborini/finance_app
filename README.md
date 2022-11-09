@@ -1,24 +1,21 @@
 # despesasplus
 
-<div align="center">
-
-https://user-images.githubusercontent.com/86570695/200151895-1792e308-2b7a-465e-8800-d493909e01b0.mp4
-
-</div>
 App para você gerenciar suas finanças e buscar suas Metas.
 
 Parte 1:
 
 - Desenvolver o layout para os cards de despesas, estruturar model, form simples, através de um modal para criar nova despesa.
-- Criado db de Expenses e lista atráves do FutureBuilder e Listview.builder. CRUD finalizado. Realizado testes.
-- Nova função no app, Incomes, db separado, pequenas alterações no visual. Realizado testes.
-- Ampliado app, nova função, Metas, criado novo visual utilizando o bottonNavigationBar, estilização do app refeita.
-- Criado animação no appBar.
-- Clonado e implementado Sticky Notes. Criado lista com frases de motivação (irei ampliar a lista aos poucos).
-- Nova função no app, gráficos, puxando os últimos 7 dias e colocando em um gráfico, funciona com Saídas e Entradas.
-- Função de Visibilidade implementada, solução criada pois em modo debug, as vezes dava problemas de desempenho nos testes dos gráficos.
+- Criado db de Expenses e lista atráves do FutureBuilder e Listview.builder. CRUD finalizado
 
-Parte 2:
+## Getting Started
 
-- Irei implementar novas funções e uparei p/ o Git quando terminar.
+This project is a starting point for a Flutter application.
 
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
