@@ -15,6 +15,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Despesas+',
       theme: ThemeData(
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+              showUnselectedLabels: false,
+              elevation: 0,
+              type: BottomNavigationBarType.shifting,
+              selectedItemColor: Colors.black87),
           useMaterial3: true,
           focusColor: stanColor,
           fontFamily: 'PTSans',

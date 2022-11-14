@@ -19,7 +19,6 @@ class InitialScreen extends StatefulWidget {
 }
 
 class _InitialScreenState extends State<InitialScreen> {
-  final Duration _duration = const Duration(milliseconds: 600);
 
   @override
   void didChangeDependencies() {
@@ -32,6 +31,8 @@ class _InitialScreenState extends State<InitialScreen> {
   final Color fontColor = Colors.black87;
   final Color tabColorRed = const Color.fromARGB(255, 250, 195, 195);
   final Color tabColorGreen = const Color.fromARGB(255, 219, 241, 193);
+  final Color tabColorAmber = const Color.fromARGB(255, 251, 255, 174);
+  final Color iconColor = Colors.black87;
 
   String title = 'Metas';
   Color color = Colors.orange;
@@ -53,7 +54,7 @@ class _InitialScreenState extends State<InitialScreen> {
   Widget build(BuildContext context) {
     final appBar = AppBar(
       systemOverlayStyle:
-          const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+      const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
       backgroundColor: stanColor,
       elevation: 0,
       centerTitle: true,
@@ -68,7 +69,7 @@ class _InitialScreenState extends State<InitialScreen> {
         child: Text(
           title,
           style:
-              TextStyle(fontSize: 24 * MediaQuery.of(context).textScaleFactor),
+          TextStyle(fontSize: 24 * MediaQuery.of(context).textScaleFactor),
         ),
       ),
     );
@@ -76,6 +77,7 @@ class _InitialScreenState extends State<InitialScreen> {
         appBar.preferredSize.height -
         MediaQuery.of(context).padding.top -
         kBottomNavigationBarHeight;
+
     List body = [
       DreamScreen(height: availableHeight),
       IncomeScreen(height: availableHeight),
@@ -85,49 +87,57 @@ class _InitialScreenState extends State<InitialScreen> {
           listToChartIncomes: widget.listToChartIncomes,
           height: availableHeight),
     ];
-    return DefaultTabController(
-      initialIndex: 0,
-      length: 4,
-      child: Scaffold(
-        backgroundColor: stanColor,
-        appBar: appBar,
-        body: SizedBox(child: body.elementAt(currentIndex)),
-        bottomNavigationBar: NavigationBar(
-            height: 60,
-            labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-            selectedIndex: currentIndex,
-            elevation: 0,
-            backgroundColor: stanColor,
-            destinations: const [
-              NavigationDestination(
-                  icon: Icon(Icons.star, color: Colors.amber), label: 'Metas'),
-              NavigationDestination(
-                  icon: Icon(Icons.attach_money), label: 'Entradas'),
-              NavigationDestination(
-                  icon: Icon(Icons.money_off), label: 'Saídas'),
-              NavigationDestination(
-                  icon: Icon(Icons.info_outline), label: 'Info'),
-            ],
-            onDestinationSelected: (int index) {
-              setState(() {
-                getListIncomes();
-                getList();
-                currentIndex = index;
-                if (currentIndex == 0) {
-                  color = Colors.orange;
-                  title = 'Metas';
-                } else if (currentIndex == 1) {
-                  color = Colors.green;
-                  title = 'Entradas';
-                } else if (currentIndex == 2) {
-                  color = Colors.red;
-                  title = 'Saídas';
-                } else if (currentIndex == 3) {
-                  color = Colors.black87;
-                  title = 'Informações';
-                }
-              });
-            }),
+    return Scaffold(
+      backgroundColor: stanColor,
+      appBar: appBar,
+      body: SizedBox(child: body.elementAt(currentIndex)),
+      bottomNavigationBar: ClipRRect(
+        borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(24), topRight: Radius.circular(24)),
+        child: BottomNavigationBar(
+          backgroundColor: stanColor,
+          currentIndex: currentIndex,
+          onTap: (index) {
+            setState(() {
+              currentIndex = index;
+              getListIncomes();
+              getList();
+              currentIndex = index;
+              if (currentIndex == 0) {
+                color = Colors.orange;
+                title = 'Metas';
+              } else if (currentIndex == 1) {
+                color = Colors.green;
+                title = 'Entradas';
+              } else if (currentIndex == 2) {
+                color = Colors.red;
+                title = 'Saídas';
+              } else if (currentIndex == 3) {
+                color = Colors.black87;
+                title = 'Informações';
+              }
+            });
+          },
+          items: [
+            BottomNavigationBarItem(
+                icon: const Icon(Icons.star, color: Color(-1139968)),
+                label: 'Metas',
+                backgroundColor: tabColorAmber),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.attach_money, color: iconColor),
+              label: 'Entradas',
+              backgroundColor: tabColorGreen,
+            ),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.money_off, color: iconColor),
+                label: 'Saídas',
+                backgroundColor: tabColorRed),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.info_outline, color: iconColor),
+                label: 'Info',
+                backgroundColor: stanColor),
+          ],
+        ),
       ),
     );
   }
