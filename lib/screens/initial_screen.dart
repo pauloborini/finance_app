@@ -19,7 +19,6 @@ class InitialScreen extends StatefulWidget {
 }
 
 class _InitialScreenState extends State<InitialScreen> {
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -54,7 +53,7 @@ class _InitialScreenState extends State<InitialScreen> {
   Widget build(BuildContext context) {
     final appBar = AppBar(
       systemOverlayStyle:
-      const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+          const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
       backgroundColor: stanColor,
       elevation: 0,
       centerTitle: true,
@@ -69,7 +68,7 @@ class _InitialScreenState extends State<InitialScreen> {
         child: Text(
           title,
           style:
-          TextStyle(fontSize: 24 * MediaQuery.of(context).textScaleFactor),
+              TextStyle(fontSize: 24 * MediaQuery.of(context).textScaleFactor),
         ),
       ),
     );
@@ -99,7 +98,6 @@ class _InitialScreenState extends State<InitialScreen> {
           currentIndex: currentIndex,
           onTap: (index) {
             setState(() {
-              currentIndex = index;
               getListIncomes();
               getList();
               currentIndex = index;
