@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'colors_and_vars.dart';
 
 class FloatingButton extends StatelessWidget {
-  final Color stanColor = const Color.fromARGB(255, 245, 245, 245);
-  final Color fontColor = Colors.black87;
   final Color tabColor;
   final Function onPressed;
 

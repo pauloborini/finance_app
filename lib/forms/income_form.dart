@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:despesasplus/models/income.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import '../components/colors_and_vars.dart';
 import '../database/income_dao.dart';
 
 class IncomeForm extends StatefulWidget {
@@ -15,10 +16,6 @@ class _IncomeFormState extends State<IncomeForm> {
   TextEditingController titleController = TextEditingController();
   TextEditingController valueController = TextEditingController();
   DateTime _dateController = DateTime.now();
-
-  final Color stanColor = const Color.fromARGB(255, 245, 245, 245);
-  final Color fontColor = Colors.black87;
-  final Color tabColorGreen = const Color.fromARGB(255, 219, 241, 193);
 
   _showDatePicker() {
     showDatePicker(
@@ -66,8 +63,7 @@ class _IncomeFormState extends State<IncomeForm> {
                 ),
                 Row(
                   children: [
-                    Text(
-                        DateFormat('dd/MM/y').format(_dateController)),
+                    Text(DateFormat('dd/MM/y').format(_dateController)),
                     MaterialButton(
                       onPressed: () {
                         _showDatePicker();
@@ -107,8 +103,8 @@ class _IncomeFormState extends State<IncomeForm> {
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: tabColorGreen, elevation: 0),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
                         child: Text(
                           'Nova Entrada',
                           style: TextStyle(

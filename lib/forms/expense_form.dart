@@ -4,6 +4,8 @@ import 'package:despesasplus/models/expense.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../components/colors_and_vars.dart';
+
 class ExpenseForm extends StatefulWidget {
   ExpenseForm({Key? key}) : super(key: key);
 
@@ -15,10 +17,6 @@ class _ExpenseFormState extends State<ExpenseForm> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _valueController = TextEditingController();
   DateTime _dateController = DateTime.now();
-
-  final Color stanColor = const Color.fromARGB(255, 245, 245, 245);
-  final Color fontColor = Colors.black87;
-  final Color tabColorRed = const Color.fromARGB(255, 250, 195, 195);
 
   _showDatePicker() {
     showDatePicker(
@@ -66,8 +64,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
               ),
               Row(
                 children: [
-                  Text(
-                      DateFormat('dd/MM/y').format(_dateController)),
+                  Text(DateFormat('dd/MM/y').format(_dateController)),
                   MaterialButton(
                     onPressed: () {
                       _showDatePicker();
@@ -107,8 +104,8 @@ class _ExpenseFormState extends State<ExpenseForm> {
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: tabColorRed, elevation: 0),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         'Nova Saída',
                         style: TextStyle(
@@ -122,8 +119,8 @@ class _ExpenseFormState extends State<ExpenseForm> {
               ),
             ],
           ),
-        ),]
-      ),
+        ),
+      ]),
     );
   }
 }

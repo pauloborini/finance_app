@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import '../../database/income_dao.dart';
 import '../../models/income.dart';
 import '../circular_progress.dart';
+import '../colors_and_vars.dart';
 
 class IncomeList extends StatefulWidget {
   final double height;
-  final Color stanColor = const Color.fromARGB(255, 245, 245, 245);
-  final Color fontColor = Colors.black87;
 
   IncomeList({Key? key, required this.height}) : super(key: key);
 
@@ -54,28 +53,28 @@ class _IncomeListState extends State<IncomeList> {
                               return AlertDialog(
                                 title: const Text("Confirmação"),
                                 content:
-                                const Text("Você quer deletar a entrada?"),
+                                    const Text("Você quer deletar a entrada?"),
                                 actions: <Widget>[
                                   ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                          backgroundColor: widget.stanColor,
+                                          backgroundColor: stanColor,
                                           elevation: 0,
-                                          foregroundColor: widget.fontColor,
+                                          foregroundColor: fontColor,
                                           surfaceTintColor: Colors.white),
                                       onPressed: () {
                                         Navigator.of(context).pop(true);
                                         IncomeDao().delete(incomes.title);
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(SnackBar(
-                                            content: Text(
-                                                '${incomes.title} apagada')));
+                                                content: Text(
+                                                    '${incomes.title} apagada')));
                                       },
                                       child: const Text("Deletar")),
                                   ElevatedButton(
                                     style: ElevatedButton.styleFrom(
-                                        backgroundColor: widget.stanColor,
+                                        backgroundColor: stanColor,
                                         elevation: 0,
-                                        foregroundColor: widget.fontColor,
+                                        foregroundColor: fontColor,
                                         surfaceTintColor: Colors.white),
                                     onPressed: () {
                                       Navigator.of(context).pop(false);
@@ -106,20 +105,20 @@ class _IncomeListState extends State<IncomeList> {
               }
               return Center(
                   child: SizedBox(
-                    width: double.maxFinite,
-                    height: 380,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Icon(
-                          Icons.error_outline,
-                          size: 56,
-                        ),
-                        Text('Sem entradas registradas',
-                            style: TextStyle(fontSize: 20))
-                      ],
+                width: double.maxFinite,
+                height: 380,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(
+                      Icons.error_outline,
+                      size: 56,
                     ),
-                  ));
+                    Text('Sem entradas registradas',
+                        style: TextStyle(fontSize: 20))
+                  ],
+                ),
+              ));
           }
           return const Text('Aguarde...');
         },

@@ -38,3 +38,14 @@ Future<Database> getDatabase3() async {
   );
 }
 
+Future<Database> getDatabase4() async {
+  final String path = join(await getDatabasesPath(), 'dream1.db');
+  return openDatabase(
+    path,
+    onCreate: (db, version) {
+      db.execute(DreamDao.tableSql3);
+    },
+    version: 1,
+  );
+}
+

@@ -2,11 +2,10 @@ import 'package:despesasplus/database/expense_dao.dart';
 import 'package:flutter/material.dart';
 import '../../models/expense.dart';
 import '../circular_progress.dart';
+import '../colors_and_vars.dart';
 
 class ExpenseList extends StatefulWidget {
   final double height;
-  final Color stanColor = const Color.fromARGB(255, 245, 245, 245);
-  final Color fontColor = Colors.black87;
 
   ExpenseList({Key? key, required this.height}) : super(key: key);
 
@@ -19,10 +18,10 @@ class _ExpenseListState extends State<ExpenseList> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: widget.height * 0.99 ,
-      child: FutureBuilder<List<Expense>> (
+      height: widget.height * 0.99,
+      child: FutureBuilder<List<Expense>>(
         future: ExpenseDao().findAll(),
-        builder: (context, snapshot)  {
+        builder: (context, snapshot) {
           List<Expense>? items = snapshot.data?.reversed.toList();
           switch (snapshot.connectionState) {
             case ConnectionState.none:
@@ -58,9 +57,9 @@ class _ExpenseListState extends State<ExpenseList> {
                                 actions: <Widget>[
                                   ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                          backgroundColor: widget.stanColor,
+                                          backgroundColor: stanColor,
                                           elevation: 0,
-                                          foregroundColor: widget.fontColor,
+                                          foregroundColor: fontColor,
                                           surfaceTintColor: Colors.white),
                                       onPressed: () {
                                         Navigator.of(context).pop(true);
@@ -73,9 +72,9 @@ class _ExpenseListState extends State<ExpenseList> {
                                       child: const Text("Deletar")),
                                   ElevatedButton(
                                     style: ElevatedButton.styleFrom(
-                                        backgroundColor: widget.stanColor,
+                                        backgroundColor: stanColor,
                                         elevation: 0,
-                                        foregroundColor: widget.fontColor,
+                                        foregroundColor: fontColor,
                                         surfaceTintColor: Colors.white),
                                     onPressed: () {
                                       Navigator.of(context).pop(false);

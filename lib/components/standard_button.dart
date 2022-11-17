@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'colors_and_vars.dart';
+
 class StandardButton extends StatelessWidget {
-  final Color stanColor = const Color.fromARGB(255, 245, 245, 245);
-  final Color fontColor = Colors.black87;
   final String text;
   final double height;
   final double width;
@@ -31,7 +31,7 @@ class StandardButton extends StatelessWidget {
       child: Text(
         text,
         textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 20, color: fontColor),
+        style: const TextStyle(fontSize: 20, color: fontColor),
       ),
     );
   }

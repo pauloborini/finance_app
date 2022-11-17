@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../components/colors_and_vars.dart';
+
 class Income extends StatelessWidget {
   final String id;
   final String title;
@@ -15,25 +17,21 @@ class Income extends StatelessWidget {
     required this.date,
   }) : super(key: key);
 
-  final Color stanColor = const Color.fromARGB(255, 245, 245, 245);
-  final Color fontColor = Colors.black87;
-  final Color tabColor = const Color.fromARGB(255, 219, 241, 193);
-
   @override
   Widget build(BuildContext context) {
     return Card(
       surfaceTintColor: stanColor,
       color: stanColor,
-      shadowColor: tabColor,
+      shadowColor: tabColorGreen,
       elevation: 4,
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            gradient: LinearGradient(colors: [
-          tabColor,
-          Colors.greenAccent,
-          Colors.green,
-        ])),
+            gradient: const LinearGradient(colors: [
+              tabColorGreen,
+              Colors.greenAccent,
+              Colors.green,
+            ])),
         width: double.infinity,
         height: 70,
         child: Row(
@@ -47,7 +45,7 @@ class Income extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(title,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                           color: fontColor)),
@@ -68,12 +66,12 @@ class Income extends StatelessWidget {
                     borderRadius: BorderRadius.circular(50)),
                 child: Center(
                     child: FittedBox(
-                      child: Text(
-                        'R\$ ${value.toStringAsFixed(2)}',
-                  style: const TextStyle(
+                  child: Text(
+                    'R\$ ${value.toStringAsFixed(2)}',
+                    style: const TextStyle(
                         fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                    )),
+                  ),
+                )),
               ),
             ),
           ],

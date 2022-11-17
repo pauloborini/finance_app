@@ -1,5 +1,8 @@
-import 'package:despesasplus/screens/initial_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'components/functions.dart';
+import 'screens/login_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,6 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      scrollBehavior: MyCustomScrollBehavior(),
       title: 'Despesas+',
       theme: ThemeData(
           bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -22,7 +26,7 @@ class MyApp extends StatelessWidget {
               selectedItemColor: Colors.black87),
           useMaterial3: true,
           focusColor: stanColor,
-          fontFamily: 'PTSans',
+          fontFamily: 'Login',
           primaryColor: stanColor,
           elevatedButtonTheme: ElevatedButtonThemeData(
               style: ElevatedButton.styleFrom(
@@ -30,12 +34,14 @@ class MyApp extends StatelessWidget {
                   foregroundColor: Colors.black87,
                   elevation: 4)),
           appBarTheme: const AppBarTheme(
+              scrolledUnderElevation: 0,
               elevation: 0,
               titleTextStyle: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24,
-                  fontFamily: 'Roboto'))),
-      home: InitialScreen(),
+                  fontFamily: 'Login'))),
+      home: LoginScreen(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

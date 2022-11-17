@@ -1,11 +1,13 @@
 import 'package:despesasplus/components/dreams/dream_list.dart';
 import 'package:despesasplus/components/dreams/sticky_note.dart';
 import 'package:flutter/material.dart';
+import '../components/colors_and_vars.dart';
 import '../forms/dream_form.dart';
 import '../components/floating_button.dart';
 
 class DreamScreen extends StatefulWidget {
   final double height;
+
   const DreamScreen({Key? key, required this.height}) : super(key: key);
 
   @override
@@ -13,10 +15,6 @@ class DreamScreen extends StatefulWidget {
 }
 
 class _DreamScreenState extends State<DreamScreen> {
-  final Color stanColor = const Color.fromARGB(255, 245, 245, 245);
-  final Color fontColor = Colors.black87;
-  final Color tabColorAmber = const Color.fromARGB(255, 251, 255, 174);
-
   _openExpenseModal3(BuildContext context) {
     showModalBottomSheet(
         context: context,
@@ -40,10 +38,12 @@ class _DreamScreenState extends State<DreamScreen> {
           Stack(alignment: AlignmentDirectional.bottomEnd, children: [
             SizedBox(
                 width: double.infinity,
-                height:widget.height * 0.39,
+                height: widget.height * 0.39,
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(10, 4, 10, 4),
-                  child: StickyNote(height: widget.height,),
+                  child: StickyNote(
+                    height: widget.height,
+                  ),
                 )),
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 20, 10),

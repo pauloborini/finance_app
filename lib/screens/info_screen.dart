@@ -2,21 +2,19 @@ import 'package:despesasplus/components/info/chart_bar.dart';
 import 'package:despesasplus/models/income.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import '../components/colors_and_vars.dart';
 import '../models/expense.dart';
 
 class InfoScreen extends StatefulWidget {
   final double height;
-  final Color stanColor = const Color.fromARGB(255, 245, 245, 245);
-  final Color fontColor = Colors.black87;
-  final Color tabColorGreen = const Color.fromARGB(255, 117, 224, 53);
-  final Color tabColorRed = const Color.fromARGB(255, 222, 55, 55);
   final List<Expense> listToChartExpenses;
   final List<Income> listToChartIncomes;
 
   InfoScreen(
       {super.key,
       required this.listToChartExpenses,
-      required this.listToChartIncomes, required this.height});
+      required this.listToChartIncomes,
+      required this.height});
 
   @override
   State<InfoScreen> createState() => _InfoScreenState();
@@ -99,7 +97,7 @@ class _InfoScreenState extends State<InfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: widget.stanColor,
+      backgroundColor: stanColor,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
@@ -113,7 +111,7 @@ class _InfoScreenState extends State<InfoScreen> {
                 child: Center(
                   child: Text(
                     'Gráfico: Saída de Capital (Semanal)',
-                    style: TextStyle(fontSize: 18, fontFamily: 'Roboto'),
+                    style: TextStyle(fontSize: 20),
                   ),
                 ),
               ),
@@ -124,8 +122,8 @@ class _InfoScreenState extends State<InfoScreen> {
                 width: double.infinity,
                 height: 164,
                 child: Card(
-                  surfaceTintColor: widget.tabColorRed,
-                  shadowColor: widget.tabColorRed,
+                  surfaceTintColor: tabColorRed,
+                  shadowColor: tabColorRed,
                   elevation: 6,
                   margin: const EdgeInsets.all(8),
                   child: Padding(
@@ -141,7 +139,7 @@ class _InfoScreenState extends State<InfoScreen> {
                             percentage: _weekTotalValue == 0
                                 ? 0
                                 : (ex['value'] as double) / _weekTotalValue,
-                            colorBar: widget.tabColorRed,
+                            colorBar: tabColorRed,
                           ),
                         );
                       }).toList(),
@@ -157,7 +155,7 @@ class _InfoScreenState extends State<InfoScreen> {
                 child: Center(
                   child: Text(
                     'Gráfico: Entrada de Capital (Semanal)',
-                    style: TextStyle(fontSize: 18, fontFamily: 'Roboto'),
+                    style: TextStyle(fontSize: 20),
                   ),
                 ),
               ),
@@ -168,8 +166,8 @@ class _InfoScreenState extends State<InfoScreen> {
                 width: double.infinity,
                 height: 164,
                 child: Card(
-                  surfaceTintColor: widget.tabColorGreen,
-                  shadowColor: widget.tabColorGreen,
+                  surfaceTintColor: tabColorGreen,
+                  shadowColor: tabColorGreen,
                   elevation: 6,
                   margin: const EdgeInsets.all(8),
                   child: Padding(
@@ -186,7 +184,7 @@ class _InfoScreenState extends State<InfoScreen> {
                                 ? 0
                                 : (ex['value'] as double) /
                                     _weekTotalValueIncomes,
-                            colorBar: widget.tabColorGreen,
+                            colorBar: tabColorGreen,
                           ),
                         );
                       }).toList(),
@@ -205,13 +203,12 @@ class _InfoScreenState extends State<InfoScreen> {
           width: 135,
           child: FittedBox(
             child: FloatingActionButton.extended(
-              backgroundColor: widget.stanColor,
-              foregroundColor: widget.fontColor,
+              backgroundColor: stanColor,
+              foregroundColor: fontColor,
               label: const Text(
                 'Integrar Dados',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontFamily: 'Roboto',
                     fontSize: 20),
               ),
               onPressed: () {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../components/colors_and_vars.dart';
 import '../components/floating_button.dart';
 import '../forms/income_form.dart';
 import '../components/incomes/income_list.dart';
@@ -13,9 +14,6 @@ class IncomeScreen extends StatefulWidget {
 }
 
 class _IncomeScreenState extends State<IncomeScreen> {
-  final Color stanColor = const Color.fromARGB(255, 245, 245, 245);
-  final Color fontColor = Colors.black87;
-  final Color tabColorGreen = const Color.fromARGB(255, 219, 241, 193);
 
   _openExpenseModal2(BuildContext context) {
     showModalBottomSheet(

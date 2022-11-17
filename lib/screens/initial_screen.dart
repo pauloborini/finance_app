@@ -2,15 +2,19 @@ import 'package:despesasplus/database/expense_dao.dart';
 import 'package:despesasplus/database/income_dao.dart';
 import 'package:despesasplus/models/expense.dart';
 import 'package:despesasplus/models/income.dart';
+import 'package:despesasplus/models/user.dart';
 import 'package:despesasplus/screens/expense_screen.dart';
 import 'package:despesasplus/screens/income_screen.dart';
 import 'package:despesasplus/screens/info_screen.dart';
+import 'package:despesasplus/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:despesasplus/screens/dream_screen.dart';
 import 'package:flutter/services.dart';
+import '../components/colors_and_vars.dart';
 
 class InitialScreen extends StatefulWidget {
-  InitialScreen({Key? key}) : super(key: key);
+  InitialScreen({super.key});
+
   List<Expense> listToChartExpenses = [];
   List<Income> listToChartIncomes = [];
 
@@ -25,13 +29,6 @@ class _InitialScreenState extends State<InitialScreen> {
     getList();
     getListIncomes();
   }
-
-  final Color stanColor = const Color.fromARGB(255, 245, 244, 240);
-  final Color fontColor = Colors.black87;
-  final Color tabColorRed = const Color.fromARGB(255, 250, 195, 195);
-  final Color tabColorGreen = const Color.fromARGB(255, 219, 241, 193);
-  final Color tabColorAmber = const Color.fromARGB(255, 251, 255, 174);
-  final Color iconColor = Colors.black87;
 
   String title = 'Metas';
   Color color = Colors.orange;
@@ -52,23 +49,20 @@ class _InitialScreenState extends State<InitialScreen> {
   @override
   Widget build(BuildContext context) {
     final appBar = AppBar(
-      systemOverlayStyle:
-          const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
       backgroundColor: stanColor,
       elevation: 0,
       centerTitle: true,
       title: AnimatedDefaultTextStyle(
         style: TextStyle(
           fontWeight: FontWeight.bold,
-          fontSize: 26,
-          fontFamily: 'Roboto',
+          fontFamily: 'Login',
           color: color,
         ),
         duration: const Duration(milliseconds: 1000),
         child: Text(
           title,
           style:
-              TextStyle(fontSize: 24 * MediaQuery.of(context).textScaleFactor),
+              TextStyle(fontSize: 30 * MediaQuery.of(context).textScaleFactor),
         ),
       ),
     );
@@ -85,6 +79,7 @@ class _InitialScreenState extends State<InitialScreen> {
           listToChartExpenses: widget.listToChartExpenses,
           listToChartIncomes: widget.listToChartIncomes,
           height: availableHeight),
+      ProfileScreen(),
     ];
     return Scaffold(
       backgroundColor: stanColor,
@@ -113,12 +108,15 @@ class _InitialScreenState extends State<InitialScreen> {
               } else if (currentIndex == 3) {
                 color = Colors.black87;
                 title = 'Informações';
+              } else if (currentIndex == 4) {
+                color = Colors.black87;
+                title = 'Perfil';
               }
             });
           },
-          items: [
+          items: const [
             BottomNavigationBarItem(
-                icon: const Icon(Icons.star, color: Color(-1139968)),
+                icon: Icon(Icons.star, color: Color(-1139968)),
                 label: 'Metas',
                 backgroundColor: tabColorAmber),
             BottomNavigationBarItem(
@@ -133,7 +131,11 @@ class _InitialScreenState extends State<InitialScreen> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.info_outline, color: iconColor),
                 label: 'Info',
-                backgroundColor: stanColor),
+                backgroundColor: tabColorPurple),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.person, color: iconColor),
+                label: 'Perfil',
+                backgroundColor: tabColorBlue),
           ],
         ),
       ),

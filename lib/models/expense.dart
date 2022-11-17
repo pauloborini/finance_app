@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import '../components/colors_and_vars.dart';
 
 class Expense extends StatelessWidget {
   final String id;
@@ -8,8 +9,7 @@ class Expense extends StatelessWidget {
   final String date;
   final DateTime dateChart = DateTime.now();
 
-  Expense(
-    {
+  Expense({
     Key? key,
     required this.id,
     required this.title,
@@ -17,25 +17,21 @@ class Expense extends StatelessWidget {
     required this.date,
   }) : super(key: key);
 
-  final Color stanColor = const Color.fromARGB(255, 245, 245, 245);
-  final Color fontColor = Colors.black87;
-  final Color tabColor = const Color.fromARGB(255, 250, 195, 195);
-
   @override
   Widget build(BuildContext context) {
-
     return Card(
       surfaceTintColor: stanColor,
       color: stanColor,
-      shadowColor: tabColor,
+      shadowColor: tabColorRed,
       elevation: 4,
-      child: Container(decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-          gradient: LinearGradient(colors: [
-            tabColor,
-            Colors.redAccent,
-            Colors.red,
-          ])),
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            gradient: const LinearGradient(colors: [
+              tabColorRed,
+              Colors.redAccent,
+              Colors.red,
+            ])),
         width: double.infinity,
         height: 70,
         child: Row(
@@ -49,7 +45,7 @@ class Expense extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(title,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                           color: fontColor)),
@@ -65,16 +61,17 @@ class Expense extends StatelessWidget {
                 width: 100,
                 height: 40,
                 decoration: BoxDecoration(
-                  // border: Border.all(color: Colors.black12),
-                  // color: tabColor,
+                    // border: Border.all(color: Colors.black12),
+                    // color: tabColor,
                     borderRadius: BorderRadius.circular(50)),
                 child: Center(
                     child: FittedBox(
-                      child: Text(
-                        'R\$ ${value.toStringAsFixed(2)}',
-                        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-                    )),
+                  child: Text(
+                    'R\$ ${value.toStringAsFixed(2)}',
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                )),
               ),
             ),
           ],

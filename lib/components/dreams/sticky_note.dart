@@ -37,7 +37,9 @@ class StickyNote extends StatelessWidget {
               child: Text(
                 frase,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 24 * MediaQuery.of(context).textScaleFactor, fontFamily: 'Handlee'),
+                style: TextStyle(
+                    fontSize: 24 * MediaQuery.of(context).textScaleFactor,
+                    fontFamily: 'Handlee'),
               ))),
     );
   }

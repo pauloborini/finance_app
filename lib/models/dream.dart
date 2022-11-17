@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../components/colors_and_vars.dart';
+
 class Dream extends StatelessWidget {
   final String id;
   final String title;
   final double value;
-
-  final Color stanColor = const Color.fromARGB(255, 245, 245, 245);
-  final Color fontColor = Colors.black87;
-  final Color tabColorAmber = const Color.fromARGB(255, 251, 255, 174);
 
   const Dream(
       {super.key, required this.title, required this.value, required this.id});
