@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'routes.dart';
 
 class SigningService {
-  signing(String email, int password) async {
+  signing(String email, String password) async {
     Uri uri = Routes().urlSignIn;
     http.Response response = await http.post(
       uri,
@@ -13,6 +13,9 @@ class SigningService {
         "returnSecureToken": true,
       }),
     );
+    if(response.statusCode != 200){
+      print('Erro!!!');
+    }
     print(response.body);
   }
 }

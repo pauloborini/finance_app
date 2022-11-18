@@ -93,12 +93,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                     child: TextFormField(
                         validator: Validatorless.multiple([
-                          Validatorless.number('Apenas números'),
                           Validatorless.required('Senha Obrigatória'),
                           Validatorless.min(
-                              8, 'Senha deve ter no mínimo 8 números'),
+                              8, 'Senha deve ter no mínimo 8 caracteres'),
                           Validatorless.max(
-                              16, 'Senha pode ter no máximo 16 números')
+                              20, 'Senha pode ter no máximo 20 caracteres')
                         ]),
                         obscureText: _hidePassword,
                         keyboardType: TextInputType.number,
@@ -161,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 _formKey.currentState?.validate() ?? false;
                             if (formValid) {
                               SigningService().signing(_emailController.text,
-                                  int.parse(_passwordController.text));
+                                  _passwordController.text);
                               Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(
