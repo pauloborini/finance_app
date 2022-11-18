@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:validatorless/validatorless.dart';
 import '../components/colors_and_vars.dart';
+import '../services/auth/signing_service.dart';
 import 'forgot_password_screen.dart';
 import 'initial_screen.dart';
 import 'register_screen.dart';
@@ -29,8 +32,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void dispose() {
-   _emailController.dispose();
-   _passwordController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
     super.dispose();
   }
 
@@ -60,7 +63,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   SizedBox(
                     width: double.infinity,
-                    height: MediaQuery.of(context).size.height * 0.15,
+                    height: MediaQuery.of(context).size.height * 0.2,
+                    child: Image.asset('assets/images/bloom_logo.png',
+                        fit: BoxFit.cover),
                   ),
                   const Padding(
                     padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
@@ -71,25 +76,38 @@ class _LoginScreenState extends State<LoginScreen> {
                             fontFamily: 'Login')),
                   ),
                   TextFormField(
+                      validator: Validatorless.multiple([
+                        Validatorless.required('Email Obrigatório'),
+                        Validatorless.email('Email Inválido')
+                      ]),
                       keyboardType: TextInputType.emailAddress,
                       controller: _emailController,
                       decoration: const InputDecoration(
                         icon: Icon(Icons.alternate_email),
                         labelText: 'Email',
-                        labelStyle: TextStyle(fontSize: 20, fontFamily: 'Login'),
+                        labelStyle:
+                            TextStyle(fontSize: 20, fontFamily: 'Login'),
                         contentPadding: EdgeInsets.zero,
                       )),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                     child: TextFormField(
+                        validator: Validatorless.multiple([
+                          Validatorless.number('Apenas números'),
+                          Validatorless.required('Senha Obrigatória'),
+                          Validatorless.min(
+                              8, 'Senha deve ter no mínimo 8 números'),
+                          Validatorless.max(
+                              16, 'Senha pode ter no máximo 16 números')
+                        ]),
                         obscureText: _hidePassword,
                         keyboardType: TextInputType.number,
                         controller: _passwordController,
                         decoration: InputDecoration(
                           icon: const Icon(Icons.lock_outline),
                           labelText: 'Senha',
-                          labelStyle:
-                              const TextStyle(fontSize: 20, fontFamily: 'Login'),
+                          labelStyle: const TextStyle(
+                              fontSize: 20, fontFamily: 'Login'),
                           contentPadding: EdgeInsets.zero,
                           suffixIcon: IconButton(
                             onPressed: () {
@@ -107,14 +125,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       TextButton(
                           style: ButtonStyle(
-                              overlayColor:
-                                  MaterialStateProperty.all(Colors.transparent)),
+                              overlayColor: MaterialStateProperty.all(
+                                  Colors.transparent)),
                           onPressed: () {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        ForgotPasswordScreen()));
+                            showBarModalBottomSheet(
+                                context: context,
+                                builder: (context) => ForgotPasswordScreen());
                           },
                           child: const Text(
                             'Esqueceu a senha?',
@@ -137,13 +153,21 @@ class _LoginScreenState extends State<LoginScreen> {
                             backgroundColor:
                                 MaterialStateProperty.all(standardBlue),
                             elevation: MaterialStateProperty.all(0),
-                            overlayColor: MaterialStateProperty.all(standardBlue),
+                            overlayColor:
+                                MaterialStateProperty.all(standardBlue),
                           ),
                           onPressed: () {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => InitialScreen()));
+                            var formValid =
+                                _formKey.currentState?.validate() ?? false;
+                            if (formValid) {
+                              SigningService().signing(_emailController.text,
+                                  int.parse(_passwordController.text));
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => InitialScreen()),
+                                  (route) => false);
+                            }
                           },
                           child: const Text(
                             'Entrar',
@@ -202,10 +226,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         TextButton(
                             onPressed: () {
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => RegisterScreen()));
+                              showBarModalBottomSheet(
+                                  context: context,
+                                  builder: (context) => RegisterScreen());
                             },
                             child: const Text(
                               'Registre-se',

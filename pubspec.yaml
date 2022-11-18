@@ -1,4 +1,4 @@
-name: despesasplus
+name: financebloom
 description: App para você gerenciar suas finanças
 
 # The following line prevents the package from being accidentally published to
@@ -34,19 +34,26 @@ dependencies:
   intl: ^0.17.0
   sqflite: ^2.0.3+1
   path: ^1.8.2
-  mobx: ^2.1.2
-  mobx_codegen: ^2.1.0
+  provider: 6.0.4
+  modal_bottom_sheet: ^2.1.2
+  uuid: ^3.0.5
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   validatorless: ^1.2.3
+  firebase_core: ^2.2.0
+  firebase_auth: ^4.1.2
+  cloud_firestore: ^4.0.5
+  firebase_analytics: ^10.0.5
+  firebase_crashlytics: ^3.0.5
+  http: ^0.13.5
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: ^2.3.2
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

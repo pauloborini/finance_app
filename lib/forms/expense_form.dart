@@ -1,10 +1,10 @@
 import 'dart:math';
-import 'package:despesasplus/database/expense_dao.dart';
-import 'package:despesasplus/models/expense.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../components/colors_and_vars.dart';
+import '../database/expense_dao.dart';
+import '../models/expense.dart';
 
 class ExpenseForm extends StatefulWidget {
   ExpenseForm({Key? key}) : super(key: key);
@@ -41,7 +41,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
       child: Stack(children: [
         Container(
           width: double.infinity,
-          height: MediaQuery.of(context).size.height * 0.5,
+          height: MediaQuery.of(context).size.height * 0.55,
           color: stanColor,
         ),
         Container(

@@ -87,7 +87,7 @@ class _IncomeListState extends State<IncomeList> {
                           );
                         },
                         background: Container(
-                          color: const Color(0xFF222223),
+                          color: darkModeColor,
                           child: const Align(
                             alignment: Alignment(-0.9, 0),
                             child: Icon(

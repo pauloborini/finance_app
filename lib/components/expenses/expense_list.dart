@@ -1,5 +1,5 @@
-import 'package:despesasplus/database/expense_dao.dart';
 import 'package:flutter/material.dart';
+import '../../database/expense_dao.dart';
 import '../../models/expense.dart';
 import '../circular_progress.dart';
 import '../colors_and_vars.dart';
@@ -20,7 +20,7 @@ class _ExpenseListState extends State<ExpenseList> {
       width: double.infinity,
       height: widget.height * 0.99,
       child: FutureBuilder<List<Expense>>(
-        future: ExpenseDao().findAll(),
+        future: ExpenseDao().findAll() as Future<List<Expense>>,
         builder: (context, snapshot) {
           List<Expense>? items = snapshot.data?.reversed.toList();
           switch (snapshot.connectionState) {

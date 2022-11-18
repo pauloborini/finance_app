@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 const Color stanColor = Color.fromARGB(255, 245, 245, 245);
+const Color darkModeColor = Color(0xFF222223);
 const Color fontColor = Colors.black87;
 const Color tabColorAmber = Color.fromARGB(255, 251, 255, 174);
 const Color tabColorRed = Color.fromARGB(255, 250, 195, 195);

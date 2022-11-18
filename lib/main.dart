@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'services/auth/check_auth.dart';
 import 'components/functions.dart';
-import 'screens/login_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(                                                   ///Firebase init
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MyApp());
 }
 
@@ -17,7 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       scrollBehavior: MyCustomScrollBehavior(),
-      title: 'Despesas+',
+      title: 'Bloom Finance',
       theme: ThemeData(
           bottomNavigationBarTheme: const BottomNavigationBarThemeData(
               showUnselectedLabels: false,
@@ -40,7 +48,7 @@ class MyApp extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   fontSize: 24,
                   fontFamily: 'Login'))),
-      home: LoginScreen(),
+      home: CheckAuth(),
       debugShowCheckedModeBanner: false,
     );
   }

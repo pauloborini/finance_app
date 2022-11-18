@@ -1,6 +1,5 @@
-import 'package:despesasplus/models/expense.dart';
-import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
+import '../models/expense.dart';
 import 'database.dart';
 
 class ExpenseDao {

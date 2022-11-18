@@ -1,5 +1,5 @@
-import 'package:despesasplus/models/income.dart';
 import 'package:sqflite/sqflite.dart';
+import '../models/income.dart';
 import 'database.dart';
 
 class IncomeDao {

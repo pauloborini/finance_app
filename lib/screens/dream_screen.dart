@@ -1,7 +1,7 @@
-import 'package:despesasplus/components/dreams/dream_list.dart';
-import 'package:despesasplus/components/dreams/sticky_note.dart';
 import 'package:flutter/material.dart';
 import '../components/colors_and_vars.dart';
+import '../components/dreams/dream_list.dart';
+import '../components/dreams/sticky_note.dart';
 import '../forms/dream_form.dart';
 import '../components/floating_button.dart';
 

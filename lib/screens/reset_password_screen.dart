@@ -1,9 +1,9 @@
-import 'package:despesasplus/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../components/colors_and_vars.dart';
 import 'initial_screen.dart';
+import 'login_screen.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   ResetPasswordScreen({Key? key}) : super(key: key);

@@ -1,16 +1,14 @@
-import 'package:despesasplus/database/expense_dao.dart';
-import 'package:despesasplus/database/income_dao.dart';
-import 'package:despesasplus/models/expense.dart';
-import 'package:despesasplus/models/income.dart';
-import 'package:despesasplus/models/user.dart';
-import 'package:despesasplus/screens/expense_screen.dart';
-import 'package:despesasplus/screens/income_screen.dart';
-import 'package:despesasplus/screens/info_screen.dart';
-import 'package:despesasplus/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:despesasplus/screens/dream_screen.dart';
-import 'package:flutter/services.dart';
 import '../components/colors_and_vars.dart';
+import '../database/expense_dao.dart';
+import '../database/income_dao.dart';
+import '../models/expense.dart';
+import '../models/income.dart';
+import 'dream_screen.dart';
+import 'expense_screen.dart';
+import 'income_screen.dart';
+import 'info_screen.dart';
+import 'profile_screen.dart';
 
 class InitialScreen extends StatefulWidget {
   InitialScreen({super.key});
@@ -23,13 +21,6 @@ class InitialScreen extends StatefulWidget {
 }
 
 class _InitialScreenState extends State<InitialScreen> {
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    getList();
-    getListIncomes();
-  }
-
   String title = 'Metas';
   Color color = Colors.orange;
   int currentIndex = 0;

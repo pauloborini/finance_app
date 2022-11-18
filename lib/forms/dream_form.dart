@@ -1,7 +1,7 @@
 import 'dart:math';
-import 'package:despesasplus/database/dream_dao.dart';
 import 'package:flutter/material.dart';
 import '../components/colors_and_vars.dart';
+import '../database/dream_dao.dart';
 import '../models/dream.dart';
 
 class DreamForm extends StatefulWidget {
@@ -23,7 +23,7 @@ class _DreamFormState extends State<DreamForm> {
         children: [
           Container(
             width: double.infinity,
-            height: MediaQuery.of(context).size.height * 0.5,
+            height: MediaQuery.of(context).size.height * 0.55,
             color: stanColor,
           ),
           Container(

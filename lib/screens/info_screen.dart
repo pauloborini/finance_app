@@ -1,9 +1,9 @@
-import 'package:despesasplus/components/info/chart_bar.dart';
-import 'package:despesasplus/models/income.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../components/colors_and_vars.dart';
+import '../components/info/chart_bar.dart';
 import '../models/expense.dart';
+import '../models/income.dart';
 
 class InfoScreen extends StatefulWidget {
   final double height;

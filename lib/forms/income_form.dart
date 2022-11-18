@@ -1,9 +1,9 @@
 import 'dart:math';
-import 'package:despesasplus/models/income.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../components/colors_and_vars.dart';
 import '../database/income_dao.dart';
+import '../models/income.dart';
 
 class IncomeForm extends StatefulWidget {
   const IncomeForm({Key? key}) : super(key: key);
@@ -40,7 +40,7 @@ class _IncomeFormState extends State<IncomeForm> {
         children: [
           Container(
             width: double.infinity,
-            height: MediaQuery.of(context).size.height * 0.5,
+            height: MediaQuery.of(context).size.height * 0.55,
             color: stanColor,
           ),
           Container(

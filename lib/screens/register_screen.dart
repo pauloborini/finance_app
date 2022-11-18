@@ -1,9 +1,10 @@
-import 'package:despesasplus/database/user_dao.dart';
-import 'package:despesasplus/models/user.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:uuid/uuid.dart';
 import 'package:validatorless/validatorless.dart';
 import '../components/colors_and_vars.dart';
+import '../services/auth/signup_service.dart';
 import 'login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -14,6 +15,8 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  FirebaseFirestore db = FirebaseFirestore.instance;
+
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
@@ -39,35 +42,35 @@ class _RegisterScreenState extends State<RegisterScreen> {
     super.dispose();
   }
 
+  void sendData() {
+    String id = const Uuid().v1();
+    db.collection("user").doc(id).set({
+      "name": _nameController.text,
+      "email": _emailController.text,
+      "pass": _passwordController.text
+    });
+  }
+
+  void refresh() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: stanColor,
-      appBar: AppBar(
-        backgroundColor: stanColor,
-        toolbarHeight: 0,
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent,
-        ),
-      ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Container(
           width: double.infinity,
-          height: MediaQuery.of(context).size.height,
+          height: MediaQuery.of(context).size.height * 0.80,
           color: stanColor,
           child: Form(
             key: _formKey,
-            child: Container(
-              margin: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(30, 30, 30, 0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    width: double.infinity,
-                    height: MediaQuery.of(context).size.height * 0.15,
-                  ),
                   const Text('Registro',
                       style: TextStyle(
                           fontSize: 40,
@@ -106,14 +109,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: TextFormField(
                         validator: Validatorless.multiple([
                           Validatorless.required('Senha Obrigatória'),
-                          Validatorless.number('Apenas com números'),
                           Validatorless.min(
-                              8, 'Senha deve ter no mínimo 8 números'),
+                              8, 'Senha deve ter no mínimo 8 caracteres'),
                           Validatorless.max(
-                              16, 'Senha pode ter no máximo 16 números')
+                              20, 'Senha pode ter no máximo 20 caracteres')
                         ]),
                         obscureText: _hidePassword,
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.text,
                         controller: _passwordController,
                         decoration: InputDecoration(
                           icon: const Icon(Icons.lock_outline),
@@ -137,12 +139,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: TextFormField(
                         validator: Validatorless.multiple([
                           Validatorless.required('Senha Obrigatória'),
-                          Validatorless.number('Apenas com números'),
                           Validatorless.compare(
                               _passwordController, 'Senhas devem ser idênticas')
                         ]),
                         obscureText: _hidePassword,
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.text,
                         controller: _password2Controller,
                         decoration: InputDecoration(
                           icon: const Icon(Icons.lock_outline),
@@ -171,10 +172,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           var formValid =
                               _formKey.currentState?.validate() ?? false;
                           if (formValid) {
-                            UserDao().save(User(
-                                name: _nameController.text,
-                                email: _emailController.text,
-                                password: int.parse(_passwordController.text)));
+                            SignUpService().signUp(_emailController.text,
+                                _passwordController.text);
+                            sendData();
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text(
+                                        'Registro realizado com sucesso')));
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(

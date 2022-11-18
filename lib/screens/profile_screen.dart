@@ -1,6 +1,6 @@
-import 'package:despesasplus/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import '../components/colors_and_vars.dart';
+import 'login_screen.dart';
 import 'reset_password_screen.dart';
 
 class ProfileScreen extends StatefulWidget {

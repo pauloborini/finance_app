@@ -4,10 +4,10 @@ import 'database.dart';
 
 class UserDao {
   static const String tableSql3 = 'CREATE TABLE $_userTable('
-      '$_id INTEGER PRIMARY KEY, '
+      '$_id TEXT, '
       '$_name TEXT, '
       '$_email TEXT, '
-      '$_password REAL)';
+      '$_password TEXT)';
 
   static const String _userTable = 'userTable';
   static const String _id = 'id';
@@ -50,7 +50,8 @@ class UserDao {
     final List<User> users = [];
     for (Map<String, dynamic> row in userList) {
       final User user =
-          User(name: row[_name], email: row[_email], password: row[_password]);
+          User(id: row[_id],
+              name: row[_name], email: row[_email], password: row[_password]);
       users.add(user);
     }
     return users;
