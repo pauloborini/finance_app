@@ -44,7 +44,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   void sendData() {
     String id = const Uuid().v1();
-    db.collection("user").doc(id).set({
+    db.collection("users").doc(id).set({
       "name": _nameController.text,
       "email": _emailController.text,
       "pass": _passwordController.text
