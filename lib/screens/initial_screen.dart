@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../components/colors_and_vars.dart';
 import '../database/expense_dao.dart';
 import '../database/income_dao.dart';
@@ -52,8 +53,7 @@ class _InitialScreenState extends State<InitialScreen> {
         duration: const Duration(milliseconds: 1000),
         child: Text(
           title,
-          style:
-              TextStyle(fontSize: 30 * MediaQuery.of(context).textScaleFactor),
+          style: TextStyle(fontSize: 30 * MediaQuery.of(context).textScaleFactor),
         ),
       ),
     );
@@ -77,8 +77,7 @@ class _InitialScreenState extends State<InitialScreen> {
       appBar: appBar,
       body: SizedBox(child: body.elementAt(currentIndex)),
       bottomNavigationBar: ClipRRect(
-        borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(24), topRight: Radius.circular(24)),
+        borderRadius: const BorderRadius.only(topLeft: Radius.circular(24), topRight: Radius.circular(24)),
         child: BottomNavigationBar(
           backgroundColor: stanColor,
           currentIndex: currentIndex,
@@ -116,17 +115,13 @@ class _InitialScreenState extends State<InitialScreen> {
               backgroundColor: tabColorGreen,
             ),
             BottomNavigationBarItem(
-                icon: Icon(Icons.money_off, color: iconColor),
-                label: 'Saídas',
-                backgroundColor: tabColorRed),
+                icon: Icon(Icons.money_off, color: iconColor), label: 'Saídas', backgroundColor: tabColorRed),
             BottomNavigationBarItem(
                 icon: Icon(Icons.info_outline, color: iconColor),
                 label: 'Info',
                 backgroundColor: tabColorPurple),
             BottomNavigationBarItem(
-                icon: Icon(Icons.person, color: iconColor),
-                label: 'Perfil',
-                backgroundColor: tabColorBlue),
+                icon: Icon(Icons.person, color: iconColor), label: 'Perfil', backgroundColor: tabColorBlue),
           ],
         ),
       ),
